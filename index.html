@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>ATM QR Login</title>
+  <script src="https://unpkg.com/html5-qrcode"></script>
+  <style>
+    body {
+      background: #001f3f;
+      color: #00FFB3;
+      font-family: monospace;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: start;
+      padding-top: 30px;
+      height: 100vh;
+    }
+    #reader {
+      width: 300px;
+      margin: 20px;
+      border: 2px solid #00FFB3;
+      border-radius: 10px;
+    }
+    input {
+      padding: 10px;
+      font-size: 1.2rem;
+      margin-bottom: 10px;
+      border-radius: 8px;
+      border: none;
+      width: 250px;
+      text-align: center;
+      background-color: #003366;
+      color: #00FFB3;
+    }
+    button {
+      background-color: #004080;
+      border: none;
+      padding: 10px 20px;
+      font-size: 1.2rem;
+      color: #00FFB3;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Scan QR to Login</h2>
+  <div id="reader"></div>
+
+  <input type="password" id="pin" placeholder="Enter PIN" maxlength="4" />
+  <button onclick="manualLogin()">Login</button>
+
+  <script>
+    // To store scanned QR data
+    let scannedQR = null;
+
+    //calls function when a QR code is successfully scanned
+    function onScanSuccess(decodedText, decodedResult) {
+      scannedQR = decodedText;
+      console.log(`Scanned QR: ${decodedText}`);
+      document.getElementById('pin').focus();
+    }
+
+    // Initialize the QR code scanner
+    const qrScanner = new Html5QrcodeScanner("reader", {
+      fps: 10,
+      qrbox: 250
+    });
+    qrScanner.render(onScanSuccess);
+
+    // Function to handle manual login
+    // Checks if the scanned QR matches a predefined value and validates the PIN
+    function manualLogin() {
+      const pin = document.getElementById("pin").value;
+      if (!scannedQR) {
+        alert("Please scan a QR code first.");
+        return;
+      }
+
+      if (scannedQR === "123456" && pin === "0000") {
+        window.location.href = "admin.html";
+      } else {
+        sessionStorage.setItem("qrCode", scannedQR);
+        window.location.href = "user.html";
+      }
+    }
+  </script>
+
+</body>
+</html>

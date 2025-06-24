@@ -1,0 +1,43 @@
+
+body {
+  background-color: #001f3f;
+  color: #00FFB3;
+  font-family: 'Courier New', monospace;
+  min-height: 100vh;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ATM Container */
+.atm-container {
+  background-color: #003366;
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 0 0 15px #00FFB3;
+  width: 100%;
+  max-width: 600px;
+}
+/* ATM Header */
+h2, h4 {
+  text-align: center;
+  color: #00FFB3;
+}
+/* ATM Form */
+.btn-atm {
+  background-color: #004080;
+  color: #00FFB3;
+  border: 1px solid #00FFB3;
+  font-size: 1.2rem;
+}
+/* ATM Button Hover Effect */ 
+.btn-atm:hover {
+  background-color: #0059b3;
+}
+/* ATM Input Fields */
+.input-atm {
+  background-color: #002244;
+  color: #00FFB3;
+  border: 1px solid #00FFB3;
+}
